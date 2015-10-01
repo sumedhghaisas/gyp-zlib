@@ -7,6 +7,7 @@
       ],
       'sources': [
          'example.c',
+		 'example_wrapper.cpp',
       ],
       "include_dirs": [
         "../zlib",

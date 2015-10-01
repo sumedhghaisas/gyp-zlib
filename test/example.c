@@ -542,10 +542,11 @@ void test_dict_inflate(compr, comprLen, uncompr, uncomprLen)
  * Usage:  example [output.gz  [input.gz]]
  */
 
-int main(argc, argv)
-    int argc;
-    char *argv[];
+int zlib_test()
 {
+    int argc = 1;
+    char* argv[] = {"example"};
+
     Byte *compr, *uncompr;
     uLong comprLen = 10000*sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
@@ -553,7 +554,7 @@ int main(argc, argv)
 
     if (zlibVersion()[0] != myVersion[0]) {
         fprintf(stderr, "incompatible zlib version\n");
-        exit(1);
+        return 1;
 
     } else if (strcmp(zlibVersion(), ZLIB_VERSION) != 0) {
         fprintf(stderr, "warning: different zlib version\n");
@@ -569,7 +570,7 @@ int main(argc, argv)
      */
     if (compr == Z_NULL || uncompr == Z_NULL) {
         printf("out of memory\n");
-        exit(1);
+        return 1;
     }
 
 #ifdef Z_SOLO
